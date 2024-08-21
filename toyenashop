@@ -1,0 +1,87 @@
+// Variables globales
+let selectedPlan = '';
+let generatedOTP = '';
+
+// Fonction pour l'inscription
+function signUp(name, country, phone) {
+    if (name && country && phone) {
+        alert(`Sign Up Successful! Welcome, ${name}!`);
+    } else {
+        alert('Please fill in all fields.');
+    }
+}
+
+// Fonction pour la connexion
+function signIn(phoneLogin) {
+    if (phoneLogin) {
+        alert(`Sign In Successful! Welcome back!`);
+    } else {
+        alert('Please enter your phone number.');
+    }
+}
+
+// Fonction pour afficher le formulaire de mot de passe oublié
+function showForgotPassword() {
+    alert('Forgot Password form displayed. Enter your phone number to receive an OTP.');
+}
+
+// Fonction pour envoyer l'OTP
+function sendOTP(phone) {
+    if (phone) {
+        generatedOTP = Math.floor(100000 + Math.random() * 900000).toString(); // Génération d'un OTP aléatoire à 6 chiffres
+        alert(`An OTP has been sent to your phone: ${generatedOTP}`);
+    } else {
+        alert('Please enter your phone number.');
+    }
+}
+
+// Fonction pour réinitialiser le mot de passe
+function resetPassword(otpInput) {
+    if (otpInput === generatedOTP) {
+        alert('Password reset successful! You can now log in with your new password.');
+    } else {
+        alert('Invalid OTP. Please try again.');
+    }
+}
+
+// Fonction pour sélectionner un plan d'investissement
+function selectPlan(planName, min, max) {
+    selectedPlan = `${planName} Plan: Invest between $${min} and $${max}`;
+    alert(`You have selected: ${selectedPlan}`);
+}
+
+// Fonction pour traiter le paiement
+function processPayment(amount) {
+    if (amount < 15 || amount > 10000) {
+        alert('Invalid amount. Please select a valid amount.');
+        return;
+    }
+
+    const walletAddress = 'TnG4Q5g6GzGJ4vFgZcFc5Cp9j4tHc9RNGM';
+    alert(`Please send ${amount} USDT to the following address: ${walletAddress}`);
+    
+    selectedPlan = '';
+}
+
+// Fonction pour simuler l'interface utilisateur
+function simulateUserInteraction() {
+    // Simuler l'inscription
+    signUp('John Doe', 'USA', '1234567890');
+
+    // Simuler la connexion
+    signIn('1234567890');
+
+    // Simuler le mot de passe oublié
+    showForgotPassword();
+    sendOTP('1234567890');
+    resetPassword(generatedOTP); // Réinitialiser avec le bon OTP
+
+    // Sélectionner un plan d'investissement
+    selectPlan('Silver', 15, 100);
+
+    // Traiter le paiement
+    processPayment(50);
+}
+
+// Appeler la fonction pour simuler l'interaction
+simulateUserInteraction();
